@@ -1,2 +1,2 @@
 # quiz
-Repositorio del proyeco Quiz
+Repositorio del proyecto Quiz
