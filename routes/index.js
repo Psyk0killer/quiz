@@ -8,12 +8,12 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' });
 });
 
+/* GET indice*/
+router.get('/quizes', quizController.index);
 /* GET quizes/questions */
-router.get('/quizes/question', quizController.question);
-
+router.get('/quizes/:quizId(\\d+)', quizController.show);
 /* GET quizes/answer */
-router.get('/quizes/answer', quizController.answer);
-
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 /* GET author*/
 router.get('/author', quizController.author);
 
