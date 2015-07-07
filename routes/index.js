@@ -5,13 +5,13 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz', errors:[] });
 });
 
 /* Autoload de comandos con :quizId*/
-router.param('quizId', quizController.load); 
+router.param('quizId', quizController.load);
 
-/* GET indice*/
+/* GET indice */
 router.get('/quizes', quizController.index);
 /* GET quizes/questions */
 router.get('/quizes/:quizId(\\d+)', quizController.show);
@@ -19,5 +19,10 @@ router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 /* GET author*/
 router.get('/author', quizController.author);
+/* GET quizes/new */
+router.get('/quizes/new', quizController.new);
+/* POST quizes/create */
+router.post('/quizes/create', quizController.create);
+
 
 module.exports = router;
