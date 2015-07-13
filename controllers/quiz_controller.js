@@ -98,6 +98,7 @@ exports.create = function(req, res){
   )
 }
 
+
 // GET /quizes/edit
 exports.edit = function(req,res){
   var quiz = req.quiz; //autoload de instancia de quiz
@@ -119,5 +120,11 @@ exports.update = function(req, res){
       }
     }
   );
+}
 
+// DELETE /quizes/:id
+exports.destroy = function(req,res){
+  req.quiz.destroy().then(function(){
+    res.redirect('/quizes');
+  }).catch(function(error){next(error);});
 }
