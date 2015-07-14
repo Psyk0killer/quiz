@@ -4,11 +4,20 @@
         <meta charset="utf-8">
         <title>Quiz</title>
     </head>
-    <body>        
+    <body>
         <form method="get" action="/quizes/<%= quiz.id %>/answer">
             Pregunta: <%= quiz.pregunta %> <br>
             <input type="text" name="respuesta" value="Respuesta"/>
             <input type="submit" value="Enviar">
-        </form>        
+        </form>
+        <p>
+          <a href="/quizes/<%= quiz.id%>/comments/new"><button>Nuevo comentario</button></a>
+        </p>
+        <p>
+          <strong>Comentarios:</strong>
+        </p>
+        <% for (index in quiz.Comments) { %>
+          <p>- <%=quiz.Comments[index].texto%> </p>
+        <% } %>
     </body>
 </html>
