@@ -27,13 +27,13 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 /* GET author*/
 router.get('/author', quizController.author);
 /* GET quizes/new */
-router.get('/quizes/new', quizController.new);
+router.get('/quizes/new', sessionController.loginRequired, quizController.new);
 /* POST quizes/create */
-router.post('/quizes/create', quizController.create);
+router.post('/quizes/create', sessionController.loginRequired, quizController.create);
 /* GET quizes/:quizId/edit */
-router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
-router.put('/quizes/:quizId(\\d+)', quizController.update);
-router.delete('/quizes/:quizId(\\d+)', quizController.destroy);
+router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.edit);
+router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);
+router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);
 
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
