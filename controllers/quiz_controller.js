@@ -72,7 +72,7 @@ exports.answer = function(req, res) {
 
 // GET /author
 exports.author = function(req, res) {
-    res.render('quizes/author');
+    res.render('quizes/author', { errors:[]});
 }
 
 // GET /quizes/new
