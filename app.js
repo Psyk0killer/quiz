@@ -29,6 +29,20 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Helpers dinamicos
+var tiempoExpiracion = 2*60*1000; // 2 minutos
+app.use(function(req, res, next){
+    var now = new Date().getTime();
+    //Si tenemos session e informado el último acceso
+    if(req.session && req.session.lastAccess) {
+      var tiempoTranscurrido = now - req.session.lastAccess;
+      if ( tiempoTranscurrido > tiempoExpiracion ){
+          delete req.session.user;
+      }
+    }
+    req.session.lastAccess = now;
+    next();
+});
+
 app.use(function(req, res, next){
   if(!req.session.redir){
     req.session.redir = '/';
